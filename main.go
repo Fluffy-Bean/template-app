@@ -19,9 +19,12 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "Template App",
-		Width:  1024,
-		Height: 768,
+		Title:     "Template App",
+		Width:     1024,
+		Height:    768,
+		MinWidth:  420,
+		MinHeight: 400,
+		Frameless: true,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
@@ -31,13 +34,10 @@ func main() {
 			app,
 		},
 		Windows: &windows.Options{
-			//WebviewIsTransparent:              true,
-			//WindowIsTranslucent:               true,
 			DisableFramelessWindowDecorations: true,
 		},
 		Linux: &linux.Options{
 			WebviewGpuPolicy: linux.WebviewGpuPolicyOnDemand,
-			//WindowIsTranslucent: true,
 		},
 	})
 
