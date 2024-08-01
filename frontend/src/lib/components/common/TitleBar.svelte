@@ -1,37 +1,41 @@
 <script lang="ts">
-    import { WindowToggleMaximise, WindowFullscreen, Quit } from "../../../../wailsjs/runtime";
-    import { Bookmark, ArrowsOutSimple, GearSix, Minus, X } from "phosphor-svelte";
+    import { WindowToggleMaximise, WindowIsFullscreen, WindowFullscreen, WindowUnfullscreen, Quit } from "../../../../wailsjs/runtime";
+    import { Bookmark, GearSix, Minus, CornersOut, X } from "phosphor-svelte";
+
+    async function WindowToggleFullscreen() {
+        await WindowIsFullscreen() ? WindowUnfullscreen() : WindowFullscreen()
+    }
 </script>
 
-<div class="pl-3 pr-2 w-full h-10 absolute top-0 left-0 flex flex-row justify-start items-center bg-stone-800" style="--wails-draggable: drag">
-    <p class="flex flex-row justify-start items-center gap-2 text-stone-100 text-sm text-nowrap font-semibold font-IBMPlexMono pointer-events-none select-none">
-        <span class="text-amber-700 text-lg"><Bookmark weight="duotone" /></span>
+<div class="absolute top-0 left-0 z-50 flex h-10 w-full flex-row items-center justify-start bg-stone-800 pr-2 pl-3" style="--wails-draggable: drag">
+    <p class="pointer-events-none flex select-none flex-row items-center justify-start gap-2 text-sm font-semibold text-stone-100 text-nowrap font-IBMPlexMono">
+        <span class="text-lg text-amber-700"><Bookmark weight="duotone" /></span>
         Template App
     </p>
 
     <div class="flex-grow" />
 
-    <ul class="flex flex-row justify-start items-center gap-1.5" style="--wails-draggable: no-drag">
+    <ul class="flex flex-row items-center justify-start gap-1.5" style="--wails-draggable: no-drag">
         <li>
-            <button class="text-stone-100 bg-transparent hover:bg-stone-700 focus:gb-stone-700 focus:outline-none w-7 h-7 flex justify-center items-center rounded-full" on:click={WindowToggleMaximise}>
+            <button class="flex h-7 w-7 items-center justify-center rounded-full bg-transparent text-stone-100 hover:bg-stone-700 focus:gb-stone-700 focus:outline-none" on:click={WindowToggleMaximise}>
                 <GearSix weight="bold" />
             </button>
         </li>
         <li>
-            <hr class="w-px h-7 mx-1 bg-stone-700 border-0">
+            <hr class="mx-1 h-7 w-px border-0 bg-stone-700">
         </li>
         <li>
-            <button class="text-stone-100 bg-transparent hover:bg-stone-700 focus:gb-stone-700 focus:outline-none w-7 h-7 flex justify-center items-center rounded-full" on:click={WindowToggleMaximise}>
+            <button class="flex h-7 w-7 items-center justify-center rounded-full bg-transparent text-stone-100 hover:bg-stone-700 focus:gb-stone-700 focus:outline-none" on:click={WindowToggleMaximise}>
                 <Minus weight="bold" />
             </button>
         </li>
         <li>
-            <button class="text-stone-100 bg-transparent hover:bg-stone-700 focus:gb-stone-700 focus:outline-none w-7 h-7 flex justify-center items-center rounded-full" on:click={WindowFullscreen}>
-                <ArrowsOutSimple weight="bold" />
+            <button class="flex h-7 w-7 items-center justify-center rounded-full bg-transparent text-stone-100 hover:bg-stone-700 focus:gb-stone-700 focus:outline-none" on:click={WindowToggleFullscreen}>
+                <CornersOut weight="bold" />
             </button>
         </li>
         <li>
-            <button class="text-stone-100 bg-transparent hover:bg-stone-700 focus:gb-stone-700 focus:outline-none w-7 h-7 flex justify-center items-center rounded-full" on:click={Quit}>
+            <button class="flex h-7 w-7 items-center justify-center rounded-full bg-transparent text-stone-100 hover:bg-stone-700 focus:gb-stone-700 focus:outline-none" on:click={Quit}>
                 <X weight="bold" />
             </button>
         </li>

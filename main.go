@@ -6,8 +6,8 @@ import (
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
-  "github.com/wailsapp/wails/v2/pkg/options/linux"
-  "github.com/wailsapp/wails/v2/pkg/options/windows"
+	"github.com/wailsapp/wails/v2/pkg/options/linux"
+	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
 //go:embed all:frontend/dist
@@ -19,26 +19,26 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "template-app",
+		Title:  "Template App",
 		Width:  1024,
 		Height: 768,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 0, G: 0, B: 0, A: 0},
+		BackgroundColour: &options.RGBA{R: 245, G: 245, B: 244, A: 1},
 		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
 		},
-    Windows: &windows.Options{
-      WebviewIsTransparent:              true,
-      WindowIsTranslucent:               true,
-      DisableFramelessWindowDecorations: true,
-    },
-    Linux: &linux.Options{
-      WebviewGpuPolicy:    linux.WebviewGpuPolicyOnDemand,
-      WindowIsTranslucent: true,
-    },
+		Windows: &windows.Options{
+			//WebviewIsTransparent:              true,
+			//WindowIsTranslucent:               true,
+			DisableFramelessWindowDecorations: true,
+		},
+		Linux: &linux.Options{
+			WebviewGpuPolicy: linux.WebviewGpuPolicyOnDemand,
+			//WindowIsTranslucent: true,
+		},
 	})
 
 	if err != nil {
