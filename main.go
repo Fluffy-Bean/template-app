@@ -39,6 +39,7 @@ func main() {
 		},
 		Windows: &windows.Options{
 			DisableFramelessWindowDecorations: true,
+			DisablePinchZoom:                  true,
 		},
 		Linux: &linux.Options{
 			WebviewGpuPolicy: linux.WebviewGpuPolicyOnDemand,
